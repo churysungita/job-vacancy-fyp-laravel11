@@ -28,7 +28,7 @@ Having user,author,admin role and permissions <br/>
     DB_CONNECTION=mysql <br />
     DB_HOST=127.0.0.1 <br />
     DB_PORT=3306 <br />
-    DB_DATABASE=job_lister <br /> !important
+    DB_DATABASE=job_vacancy_fyp <br /> !important
     DB_USERNAME=root <br />
     DB_PASSWORD= <br />
 

@@ -28,7 +28,7 @@
     @endrole
     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'overview' ? 'active': ''}}">
       <a href="{{route('account.index')}}" class="account-nav-link">
-        <i class="fas fa-user-shield"></i> User Account
+        <i class="fas fa-user-shield"></i> My Account
       </a>
     </li>
     @role('user')
@@ -38,7 +38,12 @@
       </a>
     </li>
     @endrole
-    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'change-password' ? 'active': ''}}">
+    <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'edit-profile' ? 'active': ''}}">
+      <a href="{{route('account.editProfile')}}" class="account-nav-link">
+        <i class="fas fa-user"></i> Edit Profile
+      </a>
+    </li>  
+     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'change-password' ? 'active': ''}}">
       <a href="{{route('account.changePassword')}}" class="account-nav-link">
         <i class="fas fa-fingerprint"></i> Change Password
       </a>
@@ -48,6 +53,12 @@
         <i class="fas fa-stream"></i> My saved Jobs
       </a>
     </li>   
+
+     <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'my-application-jobs' ? 'active': ''}}">
+      <a href="{{route('savedJob.index')}}" class="account-nav-link">
+        <i class="fas fa-stream"></i> My Applications
+      </a>
+    </li>  
      <li class="list-group-item list-group-item-action {{ request()->segment(2) == 'deactivate' ? 'active': ''}}">
       <a href="{{route('account.deactivate')}}" class="account-nav-link">
         <i class="fas fa-folder-minus"></i> Deactivate Account

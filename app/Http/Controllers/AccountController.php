@@ -69,8 +69,14 @@ class AccountController extends Controller
 
     public function changePasswordView()
     {
-        return view('account.edit-profile');
+
+       
+    
+        return view('account.change-password');
     }
+
+
+    
 
     public function changePassword(Request $request)
     {
@@ -108,6 +114,78 @@ class AccountController extends Controller
         }
         return redirect()->back();
     }
+
+
+    public function editProfileView()
+    {
+
+       
+        $user = auth()->user(); // Retrieve the authenticated user
+        return view('account.edit-profile', compact('user'));
+    }
+
+
+
+    public function editProfile(Request $request)
+    {
+        if (!auth()->user()) {
+            Alert::toast('Not authenticated!', 'success');
+            return redirect()->back();
+        }
+
+        //check if the password is valid
+        $request->validate([
+           
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->user()->id,
+            'phone_number' => 'required|string|max:20|unique:users,phone_number,' . auth()->user()->id,
+            'country' => 'nullable|string|max:255',
+            'city_region' => 'nullable|string|max:255',
+            'physical_address' => 'nullable|string|max:255',
+            'date_of_birth' => 'nullable|date',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        // Fetch the authenticated user
+        $authUser = auth()->user();
+    
+        
+         
+            // Update other profile fields
+            $authUser->first_name = $request->first_name;
+            $authUser->middle_name = $request->middle_name;
+            $authUser->last_name = $request->last_name;
+            $authUser->email = $request->email;
+            $authUser->phone_number = $request->phone_number;
+            $authUser->country = $request->country;
+            $authUser->city_region = $request->city_region;
+            $authUser->physical_address = $request->physical_address;
+            $authUser->date_of_birth = $request->date_of_birth;
+    
+            // Handle profile picture upload if provided
+            if ($request->hasFile('profile_picture')) {
+                $image = $request->file('profile_picture');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('profile_images'), $imageName);
+                $authUser->profile_picture = 'profile_images/' . $imageName;
+            }
+    
+            // Save the updated user data
+            if ($authUser->save()) {
+                Alert::toast('Profile updated successfully!', 'success');
+                return redirect()->route('account.index');
+            } else {
+                Alert::toast('Failed to update profile!', 'warning');
+            }
+    
+      
+        
+    
+        return redirect()->back();
+    }
+
 
     public function deactivateView()
     {

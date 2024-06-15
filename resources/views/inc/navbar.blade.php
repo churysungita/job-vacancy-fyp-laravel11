@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-white bg-white border-bottom sticky-top" id="navbar">
   <div class="container">
   <a href="{{URL('/')}}" class="navbar-brand">
-      JobLister
+      JVP
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
      <i class="fas fa-bars"></i>
@@ -24,6 +24,8 @@
             @endrole
             <a class="dropdown-item" href="{{route('account.index')}}"> <i class="fas fa-user fa-sm "></i> Profile </a> 
             <a class="dropdown-item" href="{{route('account.changePassword')}}"> <i class="fas fa-key fa-sm "></i> Change Password </a> 
+                        <a class="dropdown-item" href="{{route('account.editProfile')}}"> <i class="fas fa-key fa-sm "></i> Edit Profile </a> 
+
               <div class="dropdown-divider"></div> 
               <a class="dropdown-item" href="{{route('account.logout')}}"> 
                 <i class="fas fa-sign-out-alt"></i> 

@@ -18,9 +18,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'email',
         'password',
+        'phone_number',
+        'country',
+        'city_region',
+        'physical_address',
+        'date_of_birth',
+        'profile_picture',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -31,6 +41,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -40,6 +52,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date',
     ];
 
     public function company()
@@ -47,7 +60,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Company');
     }
 
-    //piviot for saved jobs
+    // Pivot for saved jobs
     public function posts()
     {
         return $this->belongsToMany('App\Models\Post');

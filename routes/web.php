@@ -23,11 +23,14 @@ Route::get('/search', [JobController::class, 'index'])->name('job.index');
 Route::middleware('auth')->prefix('account')->group(function () {
   //every auth routes AccountController
   Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
-  Route::get('profile', [AccountController::class, 'index'])->name('account.index');
+  Route::get('overview', [AccountController::class, 'index'])->name('account.index');
   Route::get('deactivate', [AccountController::class, 'deactivateView'])->name('account.deactivate');
-  Route::get('edit-profile', [AccountController::class, 'changePasswordView'])->name('account.changePassword');
+  Route::get('change-password', [AccountController::class, 'changePasswordView'])->name('account.changePassword');
+  Route::get('edit-profile', [AccountController::class, 'editProfileView'])->name('account.editProfile');
   Route::delete('delete', [AccountController::class, 'deleteAccount'])->name('account.delete');
-  Route::put('edit-profile', [AccountController::class, 'changePassword'])->name('account.changePassword');
+  Route::put('change-password', [AccountController::class, 'changePassword'])->name('account.changePassword');
+  Route::put('edit-profile', [AccountController::class, 'editProfile'])->name('account.editProfile');
+
   //savedJobs
   Route::get('my-saved-jobs', [savedJobController::class, 'index'])->name('savedJob.index');
   Route::get('my-saved-jobs/{id}', [savedJobController::class, 'store'])->name('savedJob.store');

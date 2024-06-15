@@ -30,7 +30,7 @@ class PostFactory extends Factory
             'deadline' => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " +2 days")),
             'education_level' => 'Bachelors',
             'experience' => '2 years',
-            'salary' => '20k - 50k',
+            'salary' => '200,000Tsh - 500,000Tsh',
             'skills' => 'Team player, Active listener',
             'specifications' => '<p></p>',
         ];

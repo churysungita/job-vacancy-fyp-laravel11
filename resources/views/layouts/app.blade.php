@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name')?? 'JobLister' }}</title>
+    <title>{{ config('app.name')?? 'JOB VACANCY PORTAL' }}</title>
 
     <!-- Scripts -->
 
